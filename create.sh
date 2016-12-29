@@ -12,5 +12,6 @@ then
     cp $TLS_FOLDER/ssl_certificate.pem $TLS_FOLDER/cert.pem
     touch $TLS_FOLDER/chain.pem
 fi
+cp salts config/
 sh install
 HOST=$1 docker-compose up -d

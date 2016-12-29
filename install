@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./config/env
+. ./config/env
 
 cp indie.mobileconfig config/indie.mobileconfig
 sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  config/indie.mobileconfig
