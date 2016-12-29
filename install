@@ -1,14 +1,15 @@
 #!/bin/bash
 
-source ./env
+source ./config/env
 
-sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  ./indie.mobileconfig
-sed -i "s/CLOUD_HOSTNAME/${CLOUD_HOSTNAME}/g"  ./indie.mobileconfig
-sed -i "s/UUID1/$(cat /proc/sys/kernel/random/uuid)/g"  ./indie.mobileconfig
-sed -i "s/UUID2/$(cat /proc/sys/kernel/random/uuid)/g"  ./indie.mobileconfig
-sed -i "s/UUID3/$(cat /proc/sys/kernel/random/uuid)/g"  ./indie.mobileconfig
-sed -i "s/UUID4/$(cat /proc/sys/kernel/random/uuid)/g"  ./indie.mobileconfig
+cp indie.mobileconfig config/indie.mobileconfig
+sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  config/indie.mobileconfig
+sed -i "s/CLOUD_HOSTNAME/${CLOUD_HOSTNAME}/g"  config/indie.mobileconfig
+sed -i "s/UUID1/$(cat /proc/sys/kernel/random/uuid)/g"  config/indie.mobileconfig
+sed -i "s/UUID2/$(cat /proc/sys/kernel/random/uuid)/g"  config/indie.mobileconfig
+sed -i "s/UUID3/$(cat /proc/sys/kernel/random/uuid)/g"  config/indie.mobileconfig
+sed -i "s/UUID4/$(cat /proc/sys/kernel/random/uuid)/g"  config/indie.mobileconfig
 
-cat TLS/cert.pem TLS/chain.pem > TLS/ssl_certificate.pem
+cat config/TLS/cert.pem config/TLS/chain.pem > config/TLS/ssl_certificate.pem
 
-openssl smime  -sign  -signer TLS/cert.pem -inkey TLS/ssl_private_key.pem -certfile TLS/chain.pem  -nodetach -outform der -in indie.mobileconfig -out indie.signed.mobileconfig
+openssl smime  -sign  -signer config/TLS/cert.pem -inkey config/TLS/ssl_private_key.pem -certfile config/TLS/ssl_certificate.pem  -nodetach -outform der -in config/indie.mobileconfig -out config/indie.signed.mobileconfig

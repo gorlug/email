@@ -47,19 +47,20 @@ indiehosters/email | mail-in-a-box/mailinabox | status
  - docker-compose
 
 Modify the following files:
- - env.template (and rename to env)
+ - copy `env.template` to `config/env` and modify
 
 Add the following files:
- - TLS/chain.pem
- - TLS/cert.pem
- - TLS/ssl_certificate.pem
- - TLS/ssl_private_key.pem
+ - config/TLS/chain.pem
+ - config/TLS/cert.pem
+ - config/TLS/ssl_certificate.pem
+ - config/TLS/ssl_private_key.pem
+
+If they do not exist a self signed certificate will be created.
 
 ## Run
 
 ```
-./install
-HOST=example.org docker-compose up
+./create.sh hostname
 ```
 
 Check go to the web interface (http://conainer_ip:80), get the salts, and put them in the `salts` file.
