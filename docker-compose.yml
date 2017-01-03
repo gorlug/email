@@ -57,7 +57,7 @@ services:
       logging:
         driver: journald
     vimbadmin:
-      image: indiehosters/vimbadmin
+      image: vimbadmin
       hostname: "$HOST"
       links:
         - db
