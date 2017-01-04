@@ -57,7 +57,7 @@ services:
       logging:
         driver: journald
     vimbadmin:
-      image: vimbadmin
+      image: gorlug/vimbadmin
       hostname: "$HOST"
       links:
         - db
@@ -76,7 +76,7 @@ services:
       logging:
         driver: journald
     nextcloud:
-      image: nextcloud-email:11
+      image: gorlug/nextcloud-email
       links:
         - db
         - dovecot
@@ -101,7 +101,7 @@ services:
       logging:
         driver: journald
     roundcube:
-      image: roundcube-email
+      image: gorlug/roundcube-email
       volumes:
         - ./data/roundcube:/data
       links:
