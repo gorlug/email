@@ -4,7 +4,7 @@ if [ -z "$1" ]
     echo "you have to specify the host name"
     exit -1
 fi
-TLS_FOLDER="config/TLS"
+TLS_FOLDER="data/config/TLS"
 if [ ! -e $TLS_FOLDER ]
 then
     mkdir -p $TLS_FOLDER
@@ -12,6 +12,6 @@ then
     cp $TLS_FOLDER/ssl_certificate.pem $TLS_FOLDER/cert.pem
     touch $TLS_FOLDER/chain.pem
 fi
-cp salts config/
+cp salts data/config/
 sh install
 HOST=$1 docker-compose up -d
