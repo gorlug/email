@@ -57,6 +57,12 @@ To restore the FULL backup in this example, run:
 
 `./RESTORE /some/target/path super-secure-password 2017-01-05T14:07:57`
 
+## Available services
+
+- https://example.com - ViMbAdmin interface
+- https://example.com/webmail - Roundcube webmail
+- https://example.com/cloud - Nextcloud
+
 ## Features
 
 indiehosters/email | mail-in-a-box/mailinabox | status
