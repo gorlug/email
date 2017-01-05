@@ -27,6 +27,12 @@ If they do not exist a self signed certificate will be created.
 
 Everything should be up and running.
 
+If HTTPS should run on a different port add it as a second argument:
+
+```
+./create.sh hostname 8443
+```
+
 ## Backup
 
 To backup, just run the `BACKUP` in your folder, supplying a target path and password. This will create an encrypted duplicity backup.

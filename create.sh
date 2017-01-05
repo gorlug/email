@@ -14,4 +14,12 @@ then
 fi
 cp salts data/config/
 sh install
-HOST=$1 docker-compose up -d
+
+HTTPS_PORT=443
+
+if [ ! -z "$2" ]
+  then
+	HTTPS_PORT=$2
+fi
+
+PORT=$HTTPS_PORT HOST=$1 docker-compose up -d

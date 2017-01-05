@@ -127,6 +127,6 @@ services:
         - HOST
         - AUTOCONFIG_HOST="$HOST"
       ports:
-        - "443:443"
+        - "$PORT:443"
       logging:
         driver: journald
