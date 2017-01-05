@@ -10,5 +10,6 @@ docker run \
     wernight/duplicity \
     duplicity \
         --verbosity info \
+        --time $3 \
         file:///source \
         /data
