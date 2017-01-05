@@ -1,7 +1,7 @@
 # Work in progress fork
 
 # email
-Email application for based on [IndieHosters network](https://github.com/indiehosters/email)
+Email application based on [IndieHosters network](https://github.com/indiehosters/email).
 
 ## Prerequistes
 
