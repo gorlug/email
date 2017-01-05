@@ -1,0 +1,11 @@
+#!/bin/bash -eux
+docker run \
+    --rm \
+    --user 0 \
+    -v $PWD/duplicity/.cache:/home/duplicity/.cache/duplicity \
+    -v $PWD/duplicity/.gnupg:/home/duplicity/.gnupg \
+    -v $1:/source:ro \
+    wernight/duplicity \
+    duplicity \
+        collection-status \
+        file:///source
