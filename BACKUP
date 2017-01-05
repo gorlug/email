@@ -15,6 +15,7 @@ docker run \
     -v $1:/target \
     wernight/duplicity \
     duplicity \
+        --verbosity info \
         --full-if-older-than=1M \
         --allow-source-mismatch \
         /data \
