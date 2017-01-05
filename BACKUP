@@ -1,5 +1,21 @@
 #!/bin/bash -eux
+. data/config/env
 URL=${PWD##*/}
 db_container_name=`echo ${URL}_db_1 | sed "s/\.//g" | sed "s/-//g"`; \
 
-docker exec $db_container_name bash -c 'mysqldump --all-databases --events -uroot -p$MYSQL_ROOT_PASSWORD' > ./data/mysql/dump.sql
+docker exec $db_container_name bash -c 'mysqldump --all-databases --events -uroot -p$MYSQL_ROOT_PASSWORD' > ./data/application/mysql/dump.sql
+
+docker run \
+    --rm \
+    --user 0 \
+    -e PASSPHRASE=$2 \
+    -v $PWD/duplicity/.cache:/home/duplicity/.cache/duplicity \
+    -v $PWD/duplicity/.gnupg:/home/duplicity/.gnupg \
+    -v $PWD/data:/data:ro \
+    -v $1:/target \
+    wernight/duplicity \
+    duplicity \
+        --full-if-older-than=1M \
+        --allow-source-mismatch \
+        /data \
+        file:///target
