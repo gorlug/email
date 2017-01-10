@@ -1,5 +1,3 @@
-# Work in progress fork
-
 # email
 Email application based on [IndieHosters network](https://github.com/indiehosters/email).
 
@@ -9,7 +7,7 @@ Email application based on [IndieHosters network](https://github.com/indiehoster
  - docker-compose
 
 Modify the following files:
- - copy `env.template` to `data/config/env` and modify
+ - copy `env.template` to `data/config/env` and modify it (MYSQL_PASSWORD and DB_ENV_MYSQL_PASSWORD are the same password)
 
 Add the following files:
  - data/config/TLS/chain.pem
