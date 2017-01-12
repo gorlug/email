@@ -2,8 +2,10 @@ version: '2'
 services:
     memcached:
       image: memcached
+      restart: unless-stopped
     db:
       image: mysql
+      restart: unless-stopped
       volumes:
         - /dev/log:/dev/log
         - ./data/application/mysql/runtime:/var/lib/mysql
@@ -19,6 +21,7 @@ services:
         image: indiehosters/spamassassin
         links:
           - dovecot
+        restart: unless-stopped
         volumes:
           - /dev/log:/dev/log
         logging:
@@ -30,6 +33,7 @@ services:
         - db
         - spamassassin
         - dovecot
+      restart: unless-stopped
       volumes: 
         - ./data/config/opendkim:/etc/opendkim
         - ./data/config/TLS:/ssl 
@@ -45,6 +49,7 @@ services:
       image: indiehosters/dovecot
       links:
         - db
+      restart: unless-stopped
       volumes:
         - ./data/application/dovecot/mail:/mail
         - ./data/config/TLS:/ssl
@@ -65,6 +70,7 @@ services:
         - postfix
       volumes_from:
         - dovecot 
+      restart: unless-stopped
       volumes:
         - ./data/config/salts:/salts
         - ./data/config/indie.signed.mobileconfig:/var/www/html/public/indie.signed.mobileconfig
@@ -80,6 +86,7 @@ services:
       links:
         - db
         - dovecot
+      restart: unless-stopped
       volumes:
         - ./data/application/nextcloud/apps:/var/www/html/apps
         - ./data/application/nextcloud/config:/var/www/html/config
@@ -94,6 +101,7 @@ services:
         - ./nextcloud-nginx.conf:/etc/nginx/nginx.conf:ro
       links:
         - nextcloud
+      restart: unless-stopped
       volumes_from:
         - nextcloud
       environment:
@@ -102,6 +110,7 @@ services:
         driver: journald
     roundcube:
       image: gorlug/roundcube-email
+      restart: unless-stopped
       volumes:
         - ./data/application/roundcube:/data
       links:
@@ -118,6 +127,7 @@ services:
         - vimbadmin
         - nextcloud-web
         - roundcube
+      restart: unless-stopped
       volumes_from:
         - vimbadmin
       volumes:
